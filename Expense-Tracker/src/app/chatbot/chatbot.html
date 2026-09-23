@@ -1,0 +1,31 @@
+<div class="position-fixed bottom-0 end-0 m-3" style="z-index: 100;">
+
+    <div class="card mb-2 shadow" style="width: 300px;" *ngIf="isOpen()">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <span>Your Assistant</span>
+            <button class="btn-close btn-close-white" (click)="toggleOpen()"></button>
+        </div>
+
+        <div class="px-3 pt-2 small text-muted">
+            I can answer things like: total spending, highest expense, spending by category, monthly totals, and average expense.
+        </div>
+
+        <div class="card-body" style="max-height: 250px; overflow-y: auto;">
+            <div *ngFor="let msg of messages()" class="mb-2">
+                <span class="badge" [class.bg-primary]="msg.from === 'user'" [class.bg-secondary]="msg.from === 'ai'">
+                    {{ msg.from === 'user' ? 'You' : 'Bot' }}
+                </span>
+                {{ msg.text }}
+            </div>
+        </div>
+
+        <div class="card-footer d-flex gap-2">
+            <input type="text" class="form-control" placeholder="Ask about your expenses..." [(ngModel)]="userInput" (keydown)="onKeydown($event)" />
+            <button class="btn btn-primary" (click)="send()">Send</button>
+        </div>
+    </div>
+
+    <button class="btn btn-primary shadow" (click)="toggleOpen()">
+        {{ isOpen() ? 'Close' : 'Chat' }}
+    </button>
+</div>

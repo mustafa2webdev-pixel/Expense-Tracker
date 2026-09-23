@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Navbar } from './navbar/navbar';
+import { Chatbot } from './chatbot/chatbot';
+
+@Component({
+  imports: [RouterOutlet, Navbar, Chatbot],
+  selector: 'app-root',
+  styleUrl: './app.css',
+  templateUrl: './app.html',
+})
+export class App {}
